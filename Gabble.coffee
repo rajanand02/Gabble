@@ -1,4 +1,5 @@
 @Messages  = new Meteor.Collection "messages"
+@Rooms  = new Meteor.Collection "rooms"
 Router.configure
   layoutTemplate: 'layout'
 Router.map ->
@@ -43,6 +44,7 @@ if Meteor.isClient
       $("h1").remove()
       $("#subTitle").text(location.href).addClass "url"
       $("body").addClass "active"
+      Rooms.insert({name: window.location.href}) if Rooms.find({name: window.location.href}).count() is 0 
 
     if room
       setRoom room
@@ -71,6 +73,7 @@ if Meteor.isClient
             console.log err
         false
 
+
     unless window.location.href is "http://localhost:3000/speak"
     #unless window.location.href is "http://gabblev1.meteor.com/speak"
       $("#leave").css "display", "inline"
@@ -85,9 +88,13 @@ if Meteor.isClient
   Template.speak.events
     "click #copy": ->
       window.prompt "Share this url to anyone you want to connect:", window.location.href
-      
+  
+  
   Template.chat.messages = ->
-    Messages.find({}, { sort: time: -1})
+    console.log "test"
+    mess = Rooms.find({name: window.location.href}).fetch()[0].messages if Rooms.find({name: window.location.href}).fetch()[0]
+    console.log mess
+    mess
 
   Template.chat.events
     'change #name': (e, t)->
@@ -103,7 +110,10 @@ if Meteor.isClient
           alert "Please enter your name or alias"
           $('#name').focus()
         else
-          Messages.insert({name: name.value, message: text.value})	if text.value isnt ''
+          room = Rooms.findOne({name: window.location.href})
+          Rooms.update({_id: room._id}, {$set: {username: name.value}})
+          Rooms.update({_id: room._id}, {$push: {messages: {$each: [text.value]}}})
+          #Rooms.insert({name: name.value, message: text.value})	if text.value isnt ''
           text.value = ''
         chatDiv = document.getElementById("chat-box")
         chatDiv.scrollTop = chatDiv.scrollHeight
