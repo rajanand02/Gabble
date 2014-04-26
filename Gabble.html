@@ -26,12 +26,13 @@
 </template>
 
 <template name="speak">
+  <div id="room-url">
+    <a href="{{pathFor 'welcome'}}" id="leave" class="btn btn-danger hideme">Leave this room</a>
+      <p id="subTitle"> </p>
+      <button type="button" class="btn btn-info hideme" id = 'copy'>copy & share</button>
+  </div>
 <div class="col-md-6 col-md-offset-3">
     <h1 id="title">Create a chat room</h1>
-    <div class="col-md-10 no-padding">
-      <p id="subTitle"> </p>
-    </div>
-    <button type="button" class="btn btn-info hideme" id = 'copy'>copy & share</button>
     <form id="createRoom" class="input-group create-form">
       <input id="sessionInput" class="form-control"/>
       <span class="input-group-btn">
@@ -46,9 +47,7 @@
   <div class="col-md-12">
     <div class="col-md-10 ">
       <div class="col-md-4">
-        <a href="{{pathFor 'welcome'}}" id="leave" class="btn btn-danger hideme">Leave this room</a>
         <video id="localVideo" style="height: 250px; margin-top: 15px" oncontextmenu="return false;"></video>
-        <div id="localVolume" class="volume_bar"></div>
       </div>
       <div id="remotes"></div>
     </div>
