@@ -6,7 +6,7 @@ Router.map ->
   @route 'speak', path: 'speak'
 
 if Meteor.isClient
-  Template.speak.rendered ->
+  Template.speak.rendered = ->
     #initialize webrtc
     room = location.search and location.search.split("?")[1]
     webrtc = new SimpleWebRTC(
