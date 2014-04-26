@@ -37,3 +37,38 @@ if Meteor.isClient
       remotes = document.getElementById("remotes")
       el = document.getElementById("container_" + webrtc.getDomId(peer))
       remotes.removeChild el  if remotes and el
+
+    # prepare the video-chat room
+    setRoom = (name) ->
+      $("form").remove()
+      $("h1").text name
+      $("#subTitle").text(location.href).addClass "alert alert-dismissable alert-warning"
+      $("body").addClass "active"
+
+    if room
+          setRoom room
+        else
+          $("form").submit ->
+            val = $("#sessionInput").val().toLowerCase().replace(/\s/g, "-").replace(/[^A-Za-z0-9_\-]/g, "")
+            webrtc.createRoom val, (err, name) ->
+              #console.log " create room cb", arguments_
+              $("#leave").css "display", "inline"
+              $("#copy").css "display", "inline"
+              $(".clock").TimeCircles time:
+                Days:
+                  show: false
+
+              newUrl = location.pathname + "?" + name
+              unless err
+                history.replaceState
+                  foo: "bar"
+                , null, newUrl
+                setRoom name
+              else
+                console.log err
+            false
+    Template.speak.events
+      "click #share-url": ->
+        window.prompt "Share this url to anyone you want to communicate : ",  window.location.href
+
+
