@@ -46,6 +46,9 @@ p:last-child {
 #chat-box {
 	height: 300px;
 	overflow-y: scroll;
+	border: 3px solid #DFDFDF;
+    border-radius: 5px;
+    padding-left: 10px;
 }
 
 .chat-messages {
@@ -87,4 +90,12 @@ p:last-child {
 #editor{
   width: 100%;
   height: 500px;
+}
+
+body {
+	background: #F1F0FF;
+}
+
+#name {
+	margin-bottom: 10px;
 }

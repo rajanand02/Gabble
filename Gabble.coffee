@@ -44,6 +44,7 @@ if Meteor.isClient
       $("h1").remove()
       $("#subTitle").text(location.href).addClass "url"
       $("body").addClass "active"
+      window.location = window.location.href + "?r"  if window.location.href.substr(-2) isnt "?r"
 
     if room
       setRoom room
@@ -72,6 +73,7 @@ if Meteor.isClient
             console.log err
         false
 
+
     unless window.location.href is "http://localhost:3000/speak"
     #unless window.location.href is "http://gabblev1.meteor.com/speak"
       $("#leave").css "display", "inline"
@@ -89,7 +91,7 @@ if Meteor.isClient
       
   Template.chat.messages = ->
     room  = window.location.href
-    Messages.find({room: room}, { sort: time: -1}).fetch()
+    Messages.find({room: room}, { sort: time: -1}).fetch()    
 
 
 
