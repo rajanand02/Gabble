@@ -85,16 +85,18 @@ if Meteor.isClient
           show: false
     chatDiv = document.getElementById("chat-box")
     chatDiv.scrollTop = chatDiv.scrollHeight
+
   Template.speak.events
     "click #copy": ->
       window.prompt "Share this url to anyone you want to connect:", window.location.href
   
-  
-  Template.chat.messages = ->
-    console.log "test"
-    mess = Rooms.find({name: window.location.href}).fetch()[0].messages if Rooms.find({name: window.location.href}).fetch()[0]
-    console.log mess
-    mess
+  Template.chat.room = ->
+    Rooms.find({name: window.location.href})
+  # Template.chat.room = ->
+  #   console.log "test"
+  #   mess = Rooms.find({name: window.location.href}).fetch()[0].messages if Rooms.find({name: window.location.href}).fetch()[0]
+  #   console.log mess
+  #   mess
 
   Template.chat.events
     'change #name': (e, t)->

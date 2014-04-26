@@ -1,6 +1,6 @@
 <head>
   <title>Gabble</title>
-  <script src="http://simplewebrtc.com/latest.js"></script> 
+  <!--<script src="http://simplewebrtc.com/latest.js"></script> -->
 </head>
 <body>
 </body>
@@ -75,11 +75,16 @@
   <div class="col-xs-12 no-padding hideme" id = "chat-wrapper">
     <input type="text" id="name" class="form-control box" placeholder = "Enter your name or alias" maxlength="255">
     <div id="chat-box">
-      {{#each messages}}
+      {{#each room}}
       <div class="chat-messages">
-        <strong class = "name"></strong><div class="message"> {{.}} </div>
+        {{#each messages}}
+        <strong class = "name">{{../username}}</strong><div class="message"> </div>
+          {{this}}
+          <br />
+        {{/each}}
       </div>
       {{/each}}
+
     </div>
     <input type="text" id="message" class="form-control box" placeholder = "Enter your message" maxlength="255">
   </div>
