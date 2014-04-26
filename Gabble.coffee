@@ -85,17 +85,21 @@ if Meteor.isClient
     Messages.find({}, { sort: time: -1})
 
   Template.chat.events
-    'keypress #name': (e, t)->
-      if e.keyCode is 13
-        name = t.find '#name'
-        $('#name').hide() if name.value isnt ''
+    'change #name': (e, t)->
+      name = t.find '#name'
+      $('#name').hide() if name.value isnt ''
+      $('#message').focus()
 
     'keypress #message': (e, t)->
       if e.keyCode is 13 
         text = t.find "#message"
         name = t.find '#name'
-        Messages.insert({name: name.value, message: text.value})	if text.value isnt ''
-        text.value = ''
+        if name.value is ''
+          alert "Please enter your name or alias"
+          $('#name').focus()
+        else
+          Messages.insert({name: name.value, message: text.value})	if text.value isnt ''
+          text.value = ''
         chatDiv = document.getElementById("chat-box")
         chatDiv.scrollTop = chatDiv.scrollHeight
     'click .btn': ->
