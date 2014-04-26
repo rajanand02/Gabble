@@ -87,7 +87,8 @@ if Meteor.isClient
       window.prompt "Share this url to anyone you want to connect:", window.location.href
       
   Template.chat.messages = ->
-    Messages.find({}, { sort: time: -1})
+    room  = window.location.href
+    Messages.find({room: room}, { sort: time: -1}).fetch()
 
   Template.chat.events
     'change #name': (e, t)->
@@ -103,7 +104,8 @@ if Meteor.isClient
           alert "Please enter your name or alias"
           $('#name').focus()
         else
-          Messages.insert({name: name.value, message: text.value})	if text.value isnt ''
+          room  = window.location.href
+          Messages.insert({name: name.value, message: text.value, room: room })	if text.value isnt ''
           text.value = ''
         chatDiv = document.getElementById("chat-box")
         chatDiv.scrollTop = chatDiv.scrollHeight
