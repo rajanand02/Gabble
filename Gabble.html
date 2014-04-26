@@ -2,7 +2,6 @@
   <title>Gabble</title>
   <script src="http://simplewebrtc.com/latest.js"></script> 
 </head>
-</head>
 <body>
 </body>
 <template name = "layout">
@@ -15,11 +14,11 @@
 <template name="welcome">
   <div class="welcome-wrapper">
     <ul class = "why-gabble">
-    <li> Lorem ipsum</li>	
-    <li> Lorem ipsum</li>
-    <li> Lorem ipsum</li>
-    <li> Lorem ipsum</li>
-    <li> Lorem ipsum</li>
+      <li> Lorem ipsum</li>	
+      <li> Lorem ipsum</li>
+      <li> Lorem ipsum</li>
+      <li> Lorem ipsum</li>
+      <li> Lorem ipsum</li>
 
     </ul>
     <a href="{{pathFor 'speak'}}" class="btn btn-default btn-lg get-room" > Get a Room</a>
@@ -29,13 +28,10 @@
 
 <template name="speak">
   <div id="room-url">
-
-      <div class = "col-md-7" id="subTitle"> </div>
-       <button type="button" class="btn btn-default hideme pull-left" id = 'copy'>copy & share</button>
-      
-     
+    <div class = "col-md-7" id="subTitle"> </div>
+    <button type="button" class="btn btn-default hideme pull-left" id = 'copy'>copy & share</button>
   </div>
-<div class="col-md-6 col-md-offset-3 create-room">
+  <div class="col-md-6 col-md-offset-3 create-room">
     <h1 id="title">Create a chat room</h1>
     <form id="createRoom" class="input-group create-form">
       <input id="sessionInput" class="form-control"/>
@@ -51,13 +47,13 @@
   <div class="col-md-12">
     <div class="col-md-10 no-padding ">
       <div class="col-md-4 no-padding">
-      <a href="{{pathFor 'welcome'}}" id="leave" class="btn btn-danger hideme pull-left">Leave this room</a>
+        <a href="{{pathFor 'welcome'}}" id="leave" class="btn btn-danger hideme pull-left">Leave this room</a>
         <video id="localVideo" style="width: 250px; margin-top: 15px" oncontextmenu="return false;"></video>
       </div>
       <div id="remotes"></div>
     </div>
     <div class="col-md-2 chat-box">
-      <!--{{> chat}}-->
+      {{> chat}}
     </div>
   </div>
 </template>	
@@ -75,4 +71,15 @@
     </div>	
   </div>
 </template>	
+<template name="chat">
+  <header>
+    <button type="submit" class="btn btn-danger btn-sm pull-right" id = "clear-chat" >clear</button>
+  </header>
+  {{#each messages}}
+  <p class="">
+    {{message}}
+  </p>
+  {{/each}}
+  <input type="text" id="message" class="form-control box" maxlength="255">
+</template>
 

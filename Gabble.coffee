@@ -1,3 +1,4 @@
+@Messages  = new Meteor.Collection "messages"
 Router.configure
   layoutTemplate: 'layout'
 Router.map ->
@@ -67,8 +68,8 @@ if Meteor.isClient
             console.log err
         false
 
-    unless window.location.href is "http://localhost:3000/speak"
-      #unless window.location.href is "http://demo123.meteor.com/speak"
+    #unless window.location.href is "http://localhost:3000/speak"
+    unless window.location.href is "http://gabblev1.meteor.com/speak"
       $("#leave").css "display", "inline"
       $("#copy").css "display", "inline"
       $(".create-room").remove()
@@ -79,3 +80,19 @@ if Meteor.isClient
   Template.speak.events
     "click #copy": ->
       window.prompt "Share this url to anyone you want to connect:", window.location.href
+      
+  Template.chat.messages = ->
+    Messages.find({}, { sort: time: -1})
+
+  Template.chat.events
+    'keypress input': (e, t)->
+      if e.keyCode is 13 
+        text = t.find "#message"
+        Messages.insert({message: text.value})	if text.value isnt ''
+        text.value = ''
+    'click .btn': ->
+      Meteor.call "removeAllMessages"
+
+if Meteor.isServer
+  Meteor.methods removeAllMessages: ->
+    Messages.remove {}
