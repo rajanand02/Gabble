@@ -2,7 +2,12 @@
   <title>Gabble</title>
   <script src="http://simplewebrtc.com/latest.js"></script> 
 </head>
-
 <body>
 </body>
+<template name = "layout">
+<div class="wrapper">
+	{{> navbar}}
+	{{> yield}}
+</div>
+</template>
 
