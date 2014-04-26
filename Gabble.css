@@ -3,4 +3,13 @@
 
 .welcome-wrapper {
 	margin-top: 100px;
+	width: 400px;
+	float: none;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 20px;
+}
+
+.why-gabble {
+	list-style: none;
 }
