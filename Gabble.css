@@ -46,3 +46,19 @@ p:last-child {
 	height: 300px;
 	overflow-y: scroll;
 }
+
+.chat-messages {
+	width: 175px;
+	word-wrap:break-word;
+	line-height: 15px;
+	margin-top: 10px;
+}
+
+.name {
+	color:#2c3e50;
+	text-transform: capitalize;
+}
+
+.message {
+	font-style: italic;
+}

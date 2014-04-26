@@ -45,14 +45,14 @@
   </div>
   <br />
   <div class="col-md-12">
-    <div class="col-md-10 no-padding ">
+    <div class="col-md-9 no-padding ">
       <div class="col-md-4 no-padding">
         <a href="{{pathFor 'welcome'}}" id="leave" class="btn btn-danger hideme pull-left">Leave this room</a>
         <video id="localVideo" style="width: 250px; margin-top: 15px" oncontextmenu="return false;"></video>
       </div>
       <div id="remotes"></div>
     </div>
-    <div class="col-md-2">
+    <div class="col-md-3">
       {{> chat}}
     </div>
   </div>
@@ -73,14 +73,16 @@
 </template>	
 <template name="chat">
   <input type="text" id="name" class="form-control box" placeholder = "Enter your name or alias" maxlength="255">
+  <div id="chat-box">
   <header>
-    <button type="submit" class="btn btn-danger btn-sm pull-right" id = "clear-chat" >clear</button>
+<!--     <button type="submit" class="btn btn-danger btn-sm pull-right" id = "clear-chat" >clear</button> -->
   </header>
   {{#each messages}}
-  <p class="">
-    <strong>{{name}}: </strong>{{message}}
-  </p>
+  <div class="chat-messages">
+    <strong class = "name">{{name}}: </strong><div class="message"> {{message}} </div>
+  </div>
   {{/each}}
+  </div>
   <input type="text" id="message" class="form-control box" placeholder = "Enter your message" maxlength="255">
 </template>
 
