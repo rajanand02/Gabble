@@ -78,7 +78,8 @@ if Meteor.isClient
       $(".clock").TimeCircles time:
         Days:
           show: false
-
+    chatDiv = document.getElementById("chat-box")
+    chatDiv.scrollTop = chatDiv.scrollHeight
   Template.speak.events
     "click #copy": ->
       window.prompt "Share this url to anyone you want to connect:", window.location.href
