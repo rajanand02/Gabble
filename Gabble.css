@@ -35,3 +35,14 @@ margin-top: 27px;
 video {
 	width: 100%;
 }
+
+
+p:last-child {
+    margin-bottom: 32px;
+}
+
+
+#chat-box {
+	height: 300px;
+	overflow-y: scroll;
+}

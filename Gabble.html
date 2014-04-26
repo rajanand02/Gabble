@@ -52,7 +52,7 @@
       </div>
       <div id="remotes"></div>
     </div>
-    <div class="col-md-2 chat-box">
+    <div class="col-md-2">
       {{> chat}}
     </div>
   </div>
@@ -72,14 +72,14 @@
   </div>
 </template>	
 <template name="chat">
-  <header>
-    <button type="submit" class="btn btn-danger btn-sm pull-right" id = "clear-chat" >clear</button>
-  </header>
+  <div id = "chat-box">
+  <!-- <button type="submit" class="btn btn-danger btn-sm pull-right" id = "clear-chat" >clear</button> -->
   {{#each messages}}
-  <p class="">
+  <div class="">
     {{message}}
-  </p>
+  </div>
   {{/each}}
+  </div>
   <input type="text" id="message" class="form-control box" maxlength="255">
 </template>
 
