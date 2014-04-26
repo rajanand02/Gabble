@@ -1,5 +1,7 @@
 <head>
   <title>Gabble</title>
+  <script src="http://simplewebrtc.com/latest.js"></script> 
+</head>
 </head>
 <body>
 </body>
@@ -27,11 +29,13 @@
 
 <template name="speak">
   <div id="room-url">
-    <a href="{{pathFor 'welcome'}}" id="leave" class="btn btn-danger hideme">Leave this room</a>
-      <p id="subTitle"> </p>
-      <button type="button" class="btn btn-info hideme" id = 'copy'>copy & share</button>
+
+      <div class = "col-md-7" id="subTitle"> </div>
+       <button type="button" class="btn btn-default hideme pull-left" id = 'copy'>copy & share</button>
+      
+     
   </div>
-<div class="col-md-6 col-md-offset-3">
+<div class="col-md-6 col-md-offset-3 create-room">
     <h1 id="title">Create a chat room</h1>
     <form id="createRoom" class="input-group create-form">
       <input id="sessionInput" class="form-control"/>
@@ -41,13 +45,14 @@
     </form>
   </div>
   <div class="col-md-3 pull-right">
-    <div class="clock hideme"></div>
+    <div class="clock"></div>
   </div>
   <br />
   <div class="col-md-12">
-    <div class="col-md-10 ">
-      <div class="col-md-4">
-        <video id="localVideo" style="height: 250px; margin-top: 15px" oncontextmenu="return false;"></video>
+    <div class="col-md-10 no-padding ">
+      <div class="col-md-4 no-padding">
+      <a href="{{pathFor 'welcome'}}" id="leave" class="btn btn-danger hideme pull-left">Leave this room</a>
+        <video id="localVideo" style="width: 250px; margin-top: 15px" oncontextmenu="return false;"></video>
       </div>
       <div id="remotes"></div>
     </div>

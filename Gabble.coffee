@@ -40,7 +40,7 @@ if Meteor.isClient
     setRoom = (name) ->
       $("form").remove()
       $("h1").remove()
-      $("#subTitle").text(location.href).addClass "alert alert-dismissable alert-warning"
+      $("#subTitle").text(location.href).addClass "url"
       $("body").addClass "active"
 
     if room
@@ -52,6 +52,7 @@ if Meteor.isClient
           #console.log " create room cb", arguments_
           $("#leave").css "display", "inline"
           $("#copy").css "display", "inline"
+          $(".create-room").remove()
           $(".clock").TimeCircles time:
             Days:
               show: false
@@ -70,6 +71,7 @@ if Meteor.isClient
       #unless window.location.href is "http://demo123.meteor.com/speak"
       $("#leave").css "display", "inline"
       $("#copy").css "display", "inline"
+      $(".create-room").remove()
       $(".clock").TimeCircles time:
         Days:
           show: false

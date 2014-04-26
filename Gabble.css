@@ -21,3 +21,17 @@
 .no-padding {
 	padding: 0px;
 }
+
+.url {
+font-size: 20px;
+line-height: 40px;
+margin-top: 27px;
+}
+
+#copy {
+	margin-top: 27px;
+}
+
+video {
+	width: 100%;
+}
