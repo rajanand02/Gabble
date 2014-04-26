@@ -112,6 +112,11 @@ if Meteor.isClient
     'click .btn': ->
       Meteor.call "removeAllMessages"
 
+  Template.speak.config = ->
+    (editor) ->
+      # Set some reasonable options on the editor
+      editor.setShowPrintMargin(false)
+      editor.getSession().setUseWrapMode(true)
 
 if Meteor.isServer
   Meteor.methods removeAllMessages: ->
