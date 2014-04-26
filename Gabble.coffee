@@ -1,4 +1,5 @@
 @Messages  = new Meteor.Collection "messages"
+this.Files = new Meteor.Collection "files"
 Router.configure
   layoutTemplate: 'layout'
 Router.map ->
@@ -121,6 +122,56 @@ if Meteor.isClient
       editor.setShowPrintMargin(false)
       editor.getSession().setUseWrapMode(true)
 
+  Template.fileList.files = ->
+    Files.find()
+
+  Template.fileList.events
+    "click button": ->
+      Files.insert
+        title: 'New', (e ,id) ->
+          return unless id
+          Session.set "file", id
+
+  Template.fileItem.current = ->
+    Session.equals "file", @_id
+
+  Template.fileItem.events =
+    "click a": (e) ->
+      e.preventDefault()
+      Session.set("file", @_id)
+
+  Template.fileTitle.title = ->
+    Files.findOne(@+"")?.title
+
+  Template.editor.fileid = ->
+    Session.get("file")
+
+  Template.editor.events =
+    "keydown input": (e) ->
+      return unless e.keyCode == 13
+      e.preventDefault()
+      $(e.target).blur()
+      id = Session.get("file")
+      Files.update id,
+        title: e.target.value
+
+    "click button": (e) ->
+      e.preventDefault()
+      id = Session.get("file")
+      Session.set("file", null)
+      Meteor.call "deleteFile", id
+
+  Template.editor.config = ->
+    (ace) ->
+      # Set some reasonable options on the editor
+      ace.setShowPrintMargin(false)
+      ace.getSession().setUseWrapMode(true)
+
 if Meteor.isServer
   Meteor.methods removeAllMessages: ->
     Messages.remove {}
+
+  Meteor.methods
+    deleteFile: (id) ->
+      Files.remove(id)
+      ShareJS.model.delete(id) unless @isSimulation 

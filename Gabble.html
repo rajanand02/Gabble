@@ -1,6 +1,6 @@
 <head>
   <title>Gabble</title>
- <!--  // <script src="http://simplewebrtc.com/latest.js"></script>  -->
+  <!--  // <script src="http://simplewebrtc.com/latest.js"></script>  -->
 </head>
 <body>
 </body>
@@ -46,19 +46,19 @@
   <br />
   <div class="col-md-12">
     <div class="col-md-9 no-padding ">
-      <div class="col-md-4 no-padding">
+      <div class="col-md-3 no-padding">
         <a href="{{pathFor 'welcome'}}" id="leave" class="btn btn-danger hideme pull-left">Leave this room</a>
         <video id="localVideo" style="width: 250px; margin-top: 15px" oncontextmenu="return false;"></video>
         <div id="remotes"></div>
       </div>
-      
+      <div class="col-md-9 ">
+        {{> fileList}}
+        {{> editor}}
+      </div> 
     </div>
     <div class="col-md-3">
       {{> chat}}
     </div>
-  </div>
-  <div class="col-md-12">
-{{> sharejsAce docid=document callback=config id="editor"}}
   </div>
 </template>	
 
@@ -77,15 +77,46 @@
 </template>	
 <template name="chat">
   <div class="col-xs-12 no-padding hideme" id = "chat-wrapper">
-  <input type="text" id="name" class="form-control box" placeholder = "Enter your name or alias" maxlength="255">
-  <div id="chat-box">
-  {{#each messages}}
-  <div class="chat-messages">
-    <strong class = "name">{{name}}: </strong><div class="message"> {{message}} </div>
-  </div>
-  {{/each}}
-  </div>
-  <input type="text" id="message" class="form-control box" placeholder = "Enter your message" maxlength="255">
+    <input type="text" id="name" class="form-control box" placeholder = "Enter your name or alias" maxlength="255">
+    <div id="chat-box">
+      {{#each messages}}
+      <div class="chat-messages">
+        <strong class = "name">{{name}}: </strong><div class="message"> {{message}} </div>
+      </div>
+      {{/each}}
+    </div>
+    <input type="text" id="message" class="form-control box" placeholder = "Enter your message" maxlength="255">
   </div>
 </template>
 
+<template name="fileList">
+  <h3>Pick a file to edit</h3>
+  <ul class="nav nav-pills ">
+    {{#each files}}
+    {{> fileItem}}
+    {{/each}}
+  </ul>
+  <button type="button" class="btn btn-default">Create New file</button>
+</template>
+
+<template name="fileItem">
+  <li class="{{#if current}}active{{/if}}">
+    <a href="#">{{title}}</a>
+  </li>
+</template>
+
+<template name="editor">
+  {{#with fileid}}
+  {{> fileTitle this}}
+  {{> sharejsAce fileid=this callback=config id="editor"}}
+  {{/with}}
+</template>
+
+<template name="fileTitle">
+  <div class="navbar ">
+    <form class="navbar-form pull-left">
+      <input class="form-control" type="text" value="{{title}}">
+      <button class="btn btn-danger btn-small">Delete this file</button>
+    </form>
+  </div>
+</template>
