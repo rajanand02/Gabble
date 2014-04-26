@@ -72,11 +72,9 @@
   </div>
 </template>	
 <template name="chat">
+  <div class="col-xs-12 no-padding hideme" id = "chat-wrapper">
   <input type="text" id="name" class="form-control box" placeholder = "Enter your name or alias" maxlength="255">
   <div id="chat-box">
-  <header>
-<!--     <button type="submit" class="btn btn-danger btn-sm pull-right" id = "clear-chat" >clear</button> -->
-  </header>
   {{#each messages}}
   <div class="chat-messages">
     <strong class = "name">{{name}}: </strong><div class="message"> {{message}} </div>
@@ -84,5 +82,6 @@
   {{/each}}
   </div>
   <input type="text" id="message" class="form-control box" placeholder = "Enter your message" maxlength="255">
+  </div>
 </template>
 

@@ -53,6 +53,7 @@ if Meteor.isClient
           #console.log " create room cb", arguments_
           $("#leave").css "display", "inline"
           $("#copy").css "display", "inline"
+          $("#chat-wrapper").css "display", "inline"
           $(".create-room").remove()
           $(".clock").TimeCircles time:
             Days:
@@ -68,10 +69,11 @@ if Meteor.isClient
             console.log err
         false
 
-    #unless window.location.href is "http://localhost:3000/speak"
-    unless window.location.href is "http://gabblev1.meteor.com/speak"
+    unless window.location.href is "http://localhost:3000/speak"
+    #unless window.location.href is "http://gabblev1.meteor.com/speak"
       $("#leave").css "display", "inline"
       $("#copy").css "display", "inline"
+      $("#chat-wrapper").css "display", "inline"
       $(".create-room").remove()
       $(".clock").TimeCircles time:
         Days:
