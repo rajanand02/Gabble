@@ -72,14 +72,15 @@
   </div>
 </template>	
 <template name="chat">
+  <input type="text" id="name" class="form-control box" placeholder = "Enter your name or alias" maxlength="255">
   <header>
     <button type="submit" class="btn btn-danger btn-sm pull-right" id = "clear-chat" >clear</button>
   </header>
   {{#each messages}}
   <p class="">
-    {{message}}
+    <strong>{{name}}: </strong>{{message}}
   </p>
   {{/each}}
-  <input type="text" id="message" class="form-control box" maxlength="255">
+  <input type="text" id="message" class="form-control box" placeholder = "Enter your message" maxlength="255">
 </template>
 
