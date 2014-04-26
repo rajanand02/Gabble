@@ -39,7 +39,7 @@ if Meteor.isClient
     # prepare video-chat room
     setRoom = (name) ->
       $("form").remove()
-      $("h1").text name
+      $("h1").remove()
       $("#subTitle").text(location.href).addClass "alert alert-dismissable alert-warning"
       $("body").addClass "active"
 

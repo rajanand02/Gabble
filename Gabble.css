@@ -13,3 +13,11 @@
 .why-gabble {
 	list-style: none;
 }
+
+.hideme {
+	display: none;
+}
+
+.no-padding {
+	padding: 0px;
+}
