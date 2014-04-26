@@ -6,7 +6,6 @@ Router.map ->
   @route 'speak', path: 'speak'
 
 if Meteor.isClient
-  chatDiv = document.getElementById("prem1")
   Template.speak.rendered = ->
     # initialize webrtc
     room = location.search and location.search.split("?")[1]
@@ -86,15 +85,22 @@ if Meteor.isClient
     Messages.find({}, { sort: time: -1})
 
   Template.chat.events
-    'keypress input': (e, t)->
+    'keypress #name': (e, t)->
+      if e.keyCode is 13
+        name = t.find '#name'
+        $('#name').hide() if name.value isnt ''
+
+    'keypress #message': (e, t)->
       if e.keyCode is 13 
         text = t.find "#message"
-        Messages.insert({message: text.value})	if text.value isnt ''
+        name = t.find '#name'
+        Messages.insert({name: name.value, message: text.value})	if text.value isnt ''
         text.value = ''
         chatDiv = document.getElementById("chat-box")
         chatDiv.scrollTop = chatDiv.scrollHeight
     'click .btn': ->
       Meteor.call "removeAllMessages"
+
 
 if Meteor.isServer
   Meteor.methods removeAllMessages: ->
