@@ -26,7 +26,7 @@ if Meteor.isClient
       remotes = document.getElementById("remotes")
       if remotes
         videoElement = document.createElement("div")
-        videoElement.className = "col-md-6"
+        videoElement.className = "col-md-12 no-padding"
         videoElement.id = "container_" + webrtc.getDomId(peer)
         videoElement.appendChild video
         remotes.appendChild videoElement
@@ -81,7 +81,7 @@ if Meteor.isClient
         Days:
           show: false
     chatDiv = document.getElementById("chat-box")
-    chatDiv.scrollTop = chatDiv.scrollHeight
+    chatDiv.scrollTop = chatDiv.scrollHeight   
   Template.speak.events
     "click #copy": ->
       window.prompt "Share this url to anyone you want to connect:", window.location.href
@@ -89,6 +89,9 @@ if Meteor.isClient
   Template.chat.messages = ->
     room  = window.location.href
     Messages.find({room: room}, { sort: time: -1}).fetch()
+
+
+
 
   Template.chat.events
     'change #name': (e, t)->
