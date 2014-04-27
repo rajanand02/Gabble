@@ -1,6 +1,6 @@
 <head>
   <title>Gabble</title>
-     <script src="http://simplewebrtc.com/latest.js"></script>  
+  <script src="http://simplewebrtc.com/latest.js"></script>  
 </head>
 <body>
 </body>
@@ -12,24 +12,26 @@
 </template>
 
 <template name="welcome">
-  <div class="welcome-wrapper">
-   <b style = "font-size:22px;">Create a room and Collaborate</b>
-    <ul class = "why-gabble">
-      <li> No Signup</li>	
-      <li> No Installation</li>
-      <li> </li>
-      <li> Lorem ipsum</li>
-      <li> Lorem ipsum</li>
-
+  <div class="col-md-6 col-md-offset-3">
+    <h1 class="heading col-md-12">Welcome to Gabble</h1>
+    <a href="{{pathFor 'speak'}}" class="btn btn-success btn-lg get-room" > Get a Room</a>
+    </div>
+  <div class="info well col-md-6 col-md-offset-3">
+    <ul class="text-danger">
+      <li>So you wanna edit your files and video chat with your team simultaneously..?</li>
+      <li>Tired of paid services..?</li>
+      <li>Gabble got you covered.</li>
+      <li>No installation required.</li>
+      <li>No sign up.</li>
+      <li>Simply create a chat room and start collaborating.</li>
     </ul>
-    <a href="{{pathFor 'speak'}}" class="btn btn-default btn-lg get-room" > Get a Room</a>
   </div>
-  <div class="push"></div>
+<div class="push"></div>
 </template>
 
 <template name="speak">
   <div id="room-url">
-    <div class = "col-md-7" id="subTitle"> </div>
+    <div class = "col-md-5" id="subTitle"> </div>
     <button type="button" class="btn btn-default hideme pull-left" id = 'copy'>copy & share</button>
   </div>
   <div class="col-md-6 col-md-offset-3 create-room">
@@ -47,12 +49,12 @@
   <br />
   <div class="col-md-12">
     <div class="col-md-9 no-padding ">
-      <div class="col-md-3 no-padding">
+      <div class="col-md-3 no-padding ">
         <a href="{{pathFor 'welcome'}}" id="leave" class="btn btn-danger hideme pull-left">Leave this room</a>
-        <video id="localVideo" style="width: 250px; margin-top: 15px" oncontextmenu="return false;"></video>
+        <video id="localVideo" style="width: 230px; margin-top: 15px" oncontextmenu="return false;"></video>
         <div id="remotes"></div>
       </div>
-      <div class="col-md-9 ">
+      <div class="col-md-9 ace-editor hideme">
         {{> fileList}}
         {{> editor}}
       </div> 
@@ -97,7 +99,7 @@
     {{> fileItem}}
     {{/each}}
   </ul>
-  <button type="button" class="btn btn-default">Create New file</button>
+  <button type="button" class="btn btn-default" style="margin: 8px 16px;">Create New file</button>
 </template>
 
 <template name="fileItem">

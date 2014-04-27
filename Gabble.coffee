@@ -57,6 +57,7 @@ if Meteor.isClient
           $("#copy").css "display", "inline"
           $("#chat-wrapper").css "display", "inline"
           $(".create-room").remove()
+          $(".ace-editor").show()
           chatDiv = document.getElementById("chat-box")
           chatDiv.scrollTop = chatDiv.scrollHeight
           $(".clock").TimeCircles time:
@@ -80,6 +81,7 @@ if Meteor.isClient
       $("#copy").css "display", "inline"
       $("#chat-wrapper").css "display", "inline"
       $(".create-room").remove()
+      $(".ace-editor").show()
       $(".clock").TimeCircles time:
         Days:
           show: false
